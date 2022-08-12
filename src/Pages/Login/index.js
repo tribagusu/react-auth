@@ -2,15 +2,15 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Register = () => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [reg, setReg] = useState("");
+  const [login, setLogin] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
-  const handleRegister = (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
     setIsLoading(true);
     const payload = {
@@ -18,12 +18,12 @@ const Register = () => {
       password: password,
     };
     axios
-      .post("https://reqres.in/api/register", payload)
+      .post("https://reqres.in/api/Login", payload)
       .then((res) => {
         console.log(res.data.token);
-        setReg(res.data.token);
+        setLogin(res.data.token);
         setIsLoading(false);
-        alert(`Anda sudah terdaftar dengan token ${reg}`);
+        localStorage.setItem("token", res.data.token);
         // navigate("/");
       })
       .catch((err) => {
@@ -34,8 +34,8 @@ const Register = () => {
 
   return (
     <div className="create">
-      <h1>Register Page</h1>
-      <form onSubmit={handleRegister}>
+      <h1>Login Page</h1>
+      <form onSubmit={handleLogin}>
         <label>Email</label>
         <input
           onChange={(e) => setEmail(e.target.value)}
@@ -51,13 +51,14 @@ const Register = () => {
           required
         />
         {!isLoading ? (
-          <button>Register</button>
+          <button>Login</button>
         ) : (
-          <button disabled>Registering...</button>
+          <button disabled>Loging...</button>
         )}
       </form>
+      {!!login.length && <h3>Anda sudah login dengan token {login}</h3>}
     </div>
   );
 };
 
-export default Register;
+export default Login;
