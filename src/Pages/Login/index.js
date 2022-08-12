@@ -24,7 +24,7 @@ const Login = () => {
         setLogin(res.data.token);
         setIsLoading(false);
         localStorage.setItem("token", res.data.token);
-        // navigate("/");
+        navigate("/dashboard");
       })
       .catch((err) => {
         console.log(err);
@@ -33,7 +33,7 @@ const Login = () => {
   };
 
   return (
-    <div className="create">
+    <div className="auth">
       <h1>Login Page</h1>
       <form onSubmit={handleLogin}>
         <label>Email</label>

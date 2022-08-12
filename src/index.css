@@ -28,24 +28,24 @@ code {
   margin-right: 1rem;
 }
 
-/* Create */
-.create {
+/* auth */
+.auth {
   max-width: 400px;
   margin: 0 auto;
   text-align: center;
 }
-.create label {
+.auth label {
   text-align: left;
   display: block;
 }
-.create h2 {
+.auth h2 {
   font-size: 20px;
   color: #f1356d;
   margin-bottom: 30px;
 }
-.create input,
-.create textarea,
-.create select {
+.auth input,
+.auth textarea,
+.auth select {
   width: 100%;
   padding: 6px 10px;
   margin: 10px 0;
@@ -53,7 +53,7 @@ code {
   box-sizing: border-box;
   display: block;
 }
-.create button {
+.auth button {
   background: #f1356d;
   color: #fff;
   border: 0;

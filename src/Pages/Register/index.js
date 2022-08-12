@@ -33,7 +33,7 @@ const Register = () => {
   };
 
   return (
-    <div className="create">
+    <div className="auth">
       <h1>Register Page</h1>
       <form onSubmit={handleRegister}>
         <label>Email</label>
