@@ -1,15 +1,18 @@
 import React from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
-const useAuth = () => {
-  const user = { token: false };
-  return user && user.token;
-};
+// const useAuth = () => {
+//   const isLogin = { token: false };
+//   return isLogin && isLogin.token;
+// };
 
-const ProtectedRoute = () => {
-  const navigate = useNavigate();
-  const isAuth = useAuth();
-  return isAuth ? <Outlet /> : navigate("/login");
+const ProtectedRoute = ({ isLoggedIn, children }) => {
+  // const navigate = useNavigate();
+  // const isAuth = useAuth();
+  if (!isLoggedIn) {
+    return <Navigate to="/login" replace />;
+  }
+  return children;
 };
 
 export default ProtectedRoute;
