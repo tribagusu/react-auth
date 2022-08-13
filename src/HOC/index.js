@@ -6,10 +6,10 @@ import { Navigate } from "react-router-dom";
 //   return isLogin && isLogin.token;
 // };
 
-const ProtectedRoute = ({ isLoggedIn, children }) => {
+const ProtectedRoute = ({ user, children }) => {
   // const navigate = useNavigate();
   // const isAuth = useAuth();
-  if (!isLoggedIn) {
+  if (!user) {
     return <Navigate to="/login" replace />;
   }
   return children;

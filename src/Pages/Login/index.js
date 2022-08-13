@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ setisLoggedIn }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [login, setLogin] = useState("");
@@ -23,6 +23,7 @@ const Login = () => {
         console.log(res.data.token);
         setLogin(res.data.token);
         setIsLoading(false);
+        // setisLoggedIn(true);
         localStorage.setItem("token", res.data.token);
         navigate("/dashboard");
       })
