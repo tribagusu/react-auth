@@ -1,9 +1,13 @@
 import axios from "axios";
 import React from "react";
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
-const EditCar = ({ id }) => {
-  const [data, setData] = useState([]);
+const EditCar = () => {
+  const [car, setCar] = useState({});
+
+  const param = useParams();
+  const id = param.id;
 
   useEffect(() => {
     getData();
@@ -12,15 +16,22 @@ const EditCar = ({ id }) => {
   const getData = () => {
     axios
       .get(`https://reqres.in/api/users/${id}`)
-      .then((res) => setData(res.data.data))
+      .then((res) => setCar(res.data.data))
       .catch((err) => console.log(err));
   };
 
-  console.log(data);
+  console.log(car);
 
   return (
     <div className="auth">
       <h1>Edit Car</h1>
+      <div>
+        {Object.keys(car).length ? (
+          <div>{car.first_name}</div>
+        ) : (
+          <p>Loading...</p>
+        )}
+      </div>
     </div>
   );
 };

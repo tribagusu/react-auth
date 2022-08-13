@@ -30,7 +30,7 @@ function App() {
       {/* <Route path="/login" element={<Login setisLoggedIn={setisLoggedIn} />} /> */}
       <Route path="/login" element={<Login />} />
       <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/edit-car" element={<EditCar />} />
+      <Route path="/edit-car/:id" element={<EditCar />} />
     </Routes>
   );
 }

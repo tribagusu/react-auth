@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 Modal.setAppElement("#root");
 
 const Dashboard = () => {
-  const [data, setData] = useState([]);
+  const [car, setCar] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
 
   // const navigate = useNavigate();
@@ -22,7 +22,7 @@ const Dashboard = () => {
   const getData = () => {
     axios
       .get("https://reqres.in/api/users?page=2")
-      .then((res) => setData(res.data.data))
+      .then((res) => setCar(res.data.data))
       .catch((err) => console.log(err));
   };
 
@@ -38,18 +38,16 @@ const Dashboard = () => {
       .catch((err) => console.log(err));
   };
 
-  // console.log(data);
-
   return (
     <div className="auth">
       <h1>Data User</h1>
-      {!!data.length &&
-        data.map((user) => (
+      {!!car.length &&
+        car.map((user) => (
           <div>
             <p>{user.first_name}</p>
             <img src={user.avatar} alt="" />
             <div>
-              <Link to="/edit-car">
+              <Link to={`/edit-car/${user.id}`}>
                 <button>Edit</button>
               </Link>
               <button onClick={toggleModal}>Delete</button>
