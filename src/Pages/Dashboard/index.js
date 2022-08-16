@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Modal from "react-modal";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 Modal.setAppElement("#root");
 
@@ -9,7 +9,7 @@ const Dashboard = () => {
   const [car, setCar] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
@@ -38,9 +38,15 @@ const Dashboard = () => {
       .catch((err) => console.log(err));
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
+
   return (
     <div className="auth">
       <h1>Data User</h1>
+      <button onClick={handleLogout}>Logout</button>
       {!!car.length &&
         car.map((user) => (
           <div>
